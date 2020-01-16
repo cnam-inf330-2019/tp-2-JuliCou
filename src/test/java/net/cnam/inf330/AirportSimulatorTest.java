@@ -3,6 +3,8 @@ package net.cnam.inf330;
 import org.junit.Test;
 import org.junit.function.ThrowingRunnable;
 
+import java.util.Queue;
+
 import static org.junit.Assert.*;
 
 /**
@@ -12,6 +14,25 @@ public class AirportSimulatorTest {
 
     // TODO 2. Write a method for testing the PriorityQueue
     //...
+    @Test
+    public void evaluatePriorityQueue(Queue<Plane> flyingPlanes) {
+        boolean order = true;
+        int value = 0;
+
+        // Amélioration remplacer for par while
+        for (Plane p : flyingPlanes) {
+            if (value <= p.getFuelCapacity()){
+                value = p.getFuelCapacity();
+            }
+            else {
+                order = false;
+            }
+        }
+
+        assert(order) : "Ordre de la file non respecté";
+
+    }
+
 
     /* TODO 5. Complete this method for testing the InvalidFuelCapacityException in the
         AirportSimulator::createPlane method
@@ -21,8 +42,9 @@ public class AirportSimulatorTest {
         AirportSimulator simulator = new AirportSimulator();
         ThrowingRunnable tr = () -> simulator.simulateTurnWithNewPlanes(3, 3, new int[]{1, 1, -1});
 
-        //assertThrows(...);
+        // assertThrows(InvalidFuelCapacityException.class);
     }
+
 
     @Test
     public void testScenario1() {
