@@ -1,5 +1,6 @@
 package net.cnam.inf330;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -14,8 +15,8 @@ public class AirportSimulator {
 
     private int tick;
     private int planeCount;
-    // TODO 1.a) Declare a PriorityQueue to store the flying planes waiting to land
-    //private ... flyingPlanes;
+    PlaneFuelComparator fuelComparator = new PlaneFuelComparator();
+    private Queue<Plane> flyingPlanes = new PriorityQueue<>(fuelComparator);
     // TODO 1.b) Declare a Queue (LinkedList) to store the landed planes waiting to take off
     //private ... landedPlanes;
 
