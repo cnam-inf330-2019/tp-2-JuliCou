@@ -57,7 +57,11 @@ public class AirportSimulatorTest {
         AirportSimulator simulator = new AirportSimulator();
         ThrowingRunnable tr = () -> simulator.simulateTurnWithNewPlanes(3, 3, new int[]{1, 1, -1});
 
-        // assertThrows(InvalidFuelCapacityException.class);
+        assertThrows(InvalidFuelCapacityException.class, new ThrowingRunnable(){
+            @Override
+            public void run() throws Throwable {
+            }
+        });
     }
 
 
