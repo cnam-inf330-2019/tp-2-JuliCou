@@ -11,7 +11,7 @@ import java.util.Queue;
  * Class for implementing the simulation system.
  */
 // TODO 6.a) Make AirportSimulator an Observer object
-public class AirportSimulator {
+public class AirportSimulator implements IObserver {
 
     private final int NUM_RUNWAYS = 3;
 
