@@ -3,6 +3,7 @@ package net.cnam.inf330;
 import org.junit.Test;
 import org.junit.function.ThrowingRunnable;
 
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 import static org.junit.Assert.*;
@@ -15,7 +16,21 @@ public class AirportSimulatorTest {
     // TODO 2. Write a method for testing the PriorityQueue
     //...
     @Test
-    public void evaluatePriorityQueue(Queue<Plane> flyingPlanes) {
+    public void evaluatePriorityQueue() {
+        PlaneFuelComparator fuelComparator = new PlaneFuelComparator();
+        Queue<Plane> flyingPlanes = new PriorityQueue<>(fuelComparator);
+
+        NormalPlane p1 = new NormalPlane(0, "p1", true, 20);
+        NormalPlane p2 = new NormalPlane(1, "p2", true, 10);
+        NormalPlane p3 = new NormalPlane(2, "p3", true, 15);
+        NormalPlane p4 = new NormalPlane(3, "p4", true, 30);
+        NormalPlane p5 = new NormalPlane(4, "p5", true, 2);
+        flyingPlanes.add(p1);
+        flyingPlanes.add(p2);
+        flyingPlanes.add(p3);
+        flyingPlanes.add(p4);
+        flyingPlanes.add(p5);
+
         boolean order = true;
         int value = 0;
 
