@@ -17,8 +17,7 @@ public class AirportSimulator {
     private int planeCount;
     PlaneFuelComparator fuelComparator = new PlaneFuelComparator();
     private Queue<Plane> flyingPlanes = new PriorityQueue<>(fuelComparator);
-    // TODO 1.b) Declare a Queue (LinkedList) to store the landed planes waiting to take off
-    //private ... landedPlanes;
+    private LinkedList<Plane> landedPlanes = new LinkedList<>();
 
     public AirportSimulator() {
         this.tick = 1;
