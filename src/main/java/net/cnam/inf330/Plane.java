@@ -1,5 +1,7 @@
 package net.cnam.inf330;
 
+import java.util.ArrayList;
+
 /**
  * Class for implementing the planes operated by the simulation system.
  */
@@ -13,6 +15,8 @@ public abstract class Plane implements IPlane, IObservable {
     private String name;
     private boolean isFlying;
     private int fuelCapacity;
+    private ArrayList<IObserver> observers = new ArrayList();
+
 
     public Plane(int tick, String name, boolean isFlying, int fuelCapacity) {
         this.creationTick = tick;
@@ -57,6 +61,10 @@ public abstract class Plane implements IPlane, IObservable {
     public void notifCrash(){
         System.out.println("L'avion " + this.name + " a crashé");
     };
+
+    public void addObserver(IObserver observer) {
+        this.observers.add(observer);
+    }
 
     public String getName() {
         return name;
