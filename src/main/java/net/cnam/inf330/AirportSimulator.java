@@ -41,12 +41,22 @@ public class AirportSimulator {
         System.out.println("=====================================================================");
 
         // Step 1 : Insert new planes into the system
-        for (int i = 0; i < numNewLanding; i++)
-            createPlane(fuelCapacitiesLanding[i], true);
-        for (int i = 0; i < numNewTakingOff; i++)
+        for (int i = 0; i < numNewLanding; i++) {
+            try {
+                createPlane(fuelCapacitiesLanding[i], true);
+            } catch (InvalidFuelCapacityException e) {
+                e.printStackTrace();
+            }
+        }
+        for (int i = 0; i < numNewTakingOff; i++){
             // The fuel capacity of planes waiting to take off doesn't actually matter
             // since they are removed from the system once they take off
-            createPlane(Plane.MAX_FUEL_CAPACITY, false);
+            try {
+                createPlane(Plane.MAX_FUEL_CAPACITY, false);
+            } catch (InvalidFuelCapacityException e) {
+                e.printStackTrace();
+            }
+        }
 
         this.simulateTurn();
     }
@@ -123,16 +133,20 @@ public class AirportSimulator {
      * @param fuelCapacity
      * @param flying
      */
-    // TODO 4. Throw an InvalidFuelCapacityException when fuelCapacity is negative
-    private void createPlane(int fuelCapacity, boolean flying) {
-        String name = "Plane" + planeCount++;
-        Plane plane = new NormalPlane(this.tick, name, flying, fuelCapacity);
-        System.out.println("Created plane : " + name + " (" + fuelCapacity + ", " +
-                (flying ? "air" : "ground") + ")");
-        if (flying)
-            flyingPlanes.add(plane);
-        else
-            landedPlanes.add(plane);
+    private void createPlane(int fuelCapacity, boolean flying) throws InvalidFuelCapacityException {
+        if (fuelCapacity<0){
+            throw new InvalidFuelCapacityException("Stock de fuel négatif");
+        }
+        else{
+            String name = "Plane" + planeCount++;
+            Plane plane = new NormalPlane(this.tick, name, flying, fuelCapacity);
+            System.out.println("Created plane : " + name + " (" + fuelCapacity + ", " +
+                    (flying ? "air" : "ground") + ")");
+            if (flying)
+                flyingPlanes.add(plane);
+            else
+                landedPlanes.add(plane);
+        }
     }
 
     /**
