@@ -10,6 +10,7 @@ public class Main {
      * @param args --
      */
     public static void main(String[] args) {
+
         AirportSimulator simulator = new AirportSimulator();
         simulator.simulateTurnWithNewPlanes(3, 3, new int[]{1, 1, 1});
         simulator.simulateTurnWithNewPlanes(3, 3, new int[]{2, 2, 2});
@@ -24,4 +25,5 @@ public class Main {
         while (!simulator.isSimulationOver())
             simulator.simulateTurn();
     }
+
 }

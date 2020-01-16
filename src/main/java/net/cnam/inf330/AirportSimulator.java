@@ -1,5 +1,7 @@
 package net.cnam.inf330;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
@@ -15,7 +17,7 @@ public class AirportSimulator {
 
     private int tick;
     private int planeCount;
-    PlaneFuelComparator fuelComparator = new PlaneFuelComparator();
+    private PlaneFuelComparator fuelComparator = new PlaneFuelComparator();
     private Queue<Plane> flyingPlanes = new PriorityQueue<>(fuelComparator);
     private LinkedList<Plane> landedPlanes = new LinkedList<>();
 
@@ -72,6 +74,7 @@ public class AirportSimulator {
             boolean isLandingEmergency = flyingPlanes.peek().getFuelCapacity() == 0;
             // Land at most NUM_RUNWAYS planes that have reached zero fuel
             while (i < NUM_RUNWAYS && isLandingEmergency) {
+
                 Plane planeToLand = flyingPlanes.poll();
                 planeToLand.land(i);
                 numRunwaysUsed++;
@@ -123,7 +126,7 @@ public class AirportSimulator {
     // TODO 4. Throw an InvalidFuelCapacityException when fuelCapacity is negative
     private void createPlane(int fuelCapacity, boolean flying) {
         String name = "Plane" + planeCount++;
-        Plane plane = new Plane(this.tick, name, flying, fuelCapacity);
+        Plane plane = new NormalPlane(this.tick, name, flying, fuelCapacity);
         System.out.println("Created plane : " + name + " (" + fuelCapacity + ", " +
                 (flying ? "air" : "ground") + ")");
         if (flying)
@@ -142,3 +145,4 @@ public class AirportSimulator {
         return this.flyingPlanes.isEmpty() && this.landedPlanes.isEmpty();
     }
 }
+
