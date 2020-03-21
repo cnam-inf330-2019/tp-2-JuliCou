@@ -23,6 +23,7 @@ public abstract class Plane implements IPlane, IObservable {
         this.name = name;
         this.isFlying = isFlying;
         this.fuelCapacity = fuelCapacity;
+        // FIXME Should add Observer object to notify
     }
 
     public void fly() {
@@ -36,6 +37,7 @@ public abstract class Plane implements IPlane, IObservable {
     }
 
     public void notifTakeOff(){
+        // FIXME Should notify observer
         System.out.println("L'avion " + this.name + " a décollé.");
     };
 
@@ -49,6 +51,7 @@ public abstract class Plane implements IPlane, IObservable {
     }
 
     public void notifLand(){
+        // FIXME Should notify observer
         System.out.println("L'avion " + this.name + " a attéri.");
     };
 
@@ -59,6 +62,7 @@ public abstract class Plane implements IPlane, IObservable {
     }
 
     public void notifCrash(){
+        // FIXME Should notify observer
         System.out.println("L'avion " + this.name + " a crashé");
     };
 

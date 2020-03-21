@@ -12,6 +12,7 @@ import java.util.Queue;
  */
 // TODO 6.a) Make AirportSimulator an Observer object
 public class AirportSimulator implements IObserver {
+// Should implement update method from Observer interface
 
     private final int NUM_RUNWAYS = 3;
 
@@ -19,12 +20,13 @@ public class AirportSimulator implements IObserver {
     private int planeCount;
     private PlaneFuelComparator fuelComparator = new PlaneFuelComparator();
     private Queue<Plane> flyingPlanes = new PriorityQueue<>(fuelComparator);
+    // FIXME The type should be Queue
     private LinkedList<Plane> landedPlanes = new LinkedList<>();
 
     public AirportSimulator() {
         this.tick = 1;
         this.planeCount = 0;
-        //...
+        //... FIXME Member initializations should be here
     }
 
     /**
